@@ -5,5 +5,7 @@ export const useLandingStyles = tss.create(({ theme }) => ({
     padding: "2em 1.5em",
     gap: "2em",
     background: theme.palette.common.white,
+
+    [theme.breakpoints.up("sm")]: {},
   },
 }));

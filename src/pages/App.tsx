@@ -3,10 +3,13 @@ import { GlobalStyles } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import Landing from "./Landing";
 import { useGlobalStyles } from "../styles/global.styles";
+import { useAppStyles } from "../styles/app.styles";
 
 const App: React.FC = () => {
+  const { classes } = useAppStyles();
+
   return (
-    <div className="app">
+    <div className={classes.appContainer}>
       <GlobalStyles styles={useGlobalStyles} />
       <Routes>
         <Route path="/" element={<Landing />} />
