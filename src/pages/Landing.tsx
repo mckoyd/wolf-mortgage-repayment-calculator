@@ -15,7 +15,10 @@ const Landing: React.FC = () => {
       role="main"
       className={classes.mainContainer}
     >
-      <Header />
+      <Grid item className={classes.formItemContainer}>
+        <Header />
+      </Grid>
+      <Grid item className={classes.resultsItemContainer}></Grid>
     </Grid>
   );
 };

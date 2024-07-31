@@ -10,7 +10,7 @@ const Header: React.FC = () => {
   const { classes } = useHeaderStyles();
 
   return (
-    <Grid item className={classes.headerItemContainer}>
+    <Grid container className={classes.headerContainer}>
       <Typography className={classes.headerText}>{title}</Typography>
       <ClearAllBtn />
     </Grid>
