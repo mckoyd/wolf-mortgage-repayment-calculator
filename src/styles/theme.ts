@@ -34,7 +34,7 @@ const slate9 = "#133041";
 const slate7 = "#4E6E7E";
 const slate5 = "#6B94A8";
 const slate3 = "#9ABED5";
-const slate1 = "#E4F4FD";
+export const slate1 = "#E4F4FD";
 
 const theme: Theme = createTheme({
   palette: {

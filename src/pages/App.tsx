@@ -1,13 +1,15 @@
 import React from "react";
 import { GlobalStyles } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
+import Landing from "./Landing";
+import { useGlobalStyles } from "../styles/global.styles";
 
 const App: React.FC = () => {
   return (
     <div className="app">
-      <GlobalStyles styles={{}} />
+      <GlobalStyles styles={useGlobalStyles} />
       <Routes>
-        <Route path="/" element={<div>Wolf Landing Page</div>} />
+        <Route path="/" element={<Landing />} />
       </Routes>
     </div>
   );
