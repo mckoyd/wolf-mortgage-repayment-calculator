@@ -22,6 +22,7 @@ export const useLandingStyles = tss.create(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     width: "100%",
+    gap: "1.5em",
   },
   resultsItemContainer: {
     display: "flex",

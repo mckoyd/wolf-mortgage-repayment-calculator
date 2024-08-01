@@ -91,6 +91,54 @@ const theme: Theme = createTheme({
       letterSpacing: "0",
     },
   },
+
+  components: {
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: slate7,
+          fontFamily: "Plus Jakarta Sans",
+          fontWeight: 500,
+          fontSize: "1em",
+          lineHeight: "150%",
+          letterSpacing: "0",
+          "&.Mui-focused": {
+            color: slate7,
+          },
+        },
+      },
+    },
+
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          border: `0.0625em solid ${slate5}`,
+          marginTop: "1.75em !important",
+          borderRadius: "0.25em",
+          height: "3em",
+          fontFamily: "Plus Jakarta Sans",
+          fontWeight: 700,
+          fontSize: "1.125em",
+          lineHeight: "125%",
+          color: slate9,
+          "&:hover:not(.Mui-disabled, .Mui-error):before": {
+            borderBottom: "none",
+          },
+          "& input": {
+            padding: "0 1em !important",
+          },
+        },
+        underline: {
+          "&:before": {
+            borderBottom: "none",
+          },
+          "&:after": {
+            borderBottom: "none",
+          },
+        },
+      },
+    },
+  },
 });
 
 export default theme;
