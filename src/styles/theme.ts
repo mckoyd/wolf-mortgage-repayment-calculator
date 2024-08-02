@@ -53,7 +53,7 @@ const theme: Theme = createTheme({
     preset1: {
       fontFamily: "Plus Jakarta Sans",
       fontWeight: 700,
-      fontSize: "3.5em",
+      fontSize: "3.5rem",
       lineHeight: "125%",
       color: slate9,
       letterSpacing: "-0.0625em",
@@ -61,7 +61,7 @@ const theme: Theme = createTheme({
     preset2: {
       fontFamily: "Plus Jakarta Sans",
       fontWeight: 700,
-      fontSize: "1.5em",
+      fontSize: "1.5rem",
       lineHeight: "125%",
       color: slate9,
       letterSpacing: "-0.0625em",
@@ -69,7 +69,7 @@ const theme: Theme = createTheme({
     preset3: {
       fontFamily: "Plus Jakarta Sans",
       fontWeight: 700,
-      fontSize: "1.125em",
+      fontSize: "1.125rem",
       lineHeight: "125%",
       color: slate9,
       letterSpacing: "-0.0625em",
@@ -77,7 +77,7 @@ const theme: Theme = createTheme({
     preset4: {
       fontFamily: "Plus Jakarta Sans",
       fontWeight: 500,
-      fontSize: "1em",
+      fontSize: "1rem",
       lineHeight: "150%",
       color: slate9,
       letterSpacing: "0",
@@ -85,7 +85,7 @@ const theme: Theme = createTheme({
     preset5: {
       fontFamily: "Plus Jakarta Sans",
       fontWeight: 500,
-      fontSize: "0.875em",
+      fontSize: "0.875rem",
       lineHeight: "150%",
       color: slate9,
       letterSpacing: "0",
@@ -99,7 +99,7 @@ const theme: Theme = createTheme({
           color: slate7,
           fontFamily: "Plus Jakarta Sans",
           fontWeight: 500,
-          fontSize: "1em",
+          fontSize: "1rem",
           lineHeight: "150%",
           letterSpacing: "0",
           "&.Mui-focused": {
@@ -118,7 +118,7 @@ const theme: Theme = createTheme({
           height: "3em",
           fontFamily: "Plus Jakarta Sans",
           fontWeight: 700,
-          fontSize: "1.125em",
+          fontSize: "1.125rem",
           lineHeight: "125%",
           color: slate9,
           "&:hover:not(.Mui-disabled, .Mui-error):before": {
