@@ -1,4 +1,6 @@
+import React, { useState } from "react";
 import {
+  Button,
   FormControlLabel,
   FormLabel,
   Grid,
@@ -8,38 +10,81 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+
+import { ReactComponent as CalculatorIcon } from "../assets/images/icon-calculator.svg";
 import { useFormStyles } from "../styles/form.styles";
+import { useRecoilState } from "recoil";
+import {
+  monthlyRepaymentsState,
+  mortgageAmountState,
+  mortgageTermState,
+  mortgageTypeState,
+  mortgateInterestState,
+  totalAmountState,
+} from "../state";
 
 export const Form: React.FC = () => {
   const { classes, cx } = useFormStyles();
-  const [mortgageAmount, setMortgageAmount] = useState<string>("");
-  const [term, setTerm] = useState<string>("");
-  const [interest, setInterest] = useState<string>("");
-  const [monthlyRepayments, setMonthyRepayments] = useState<string>("");
-  const [type, setType] = useState<string>("repay");
+  const [mortgageAmount, setMortgageAmount] =
+    useRecoilState<string>(mortgageAmountState);
+  const [term, setTerm] = useRecoilState<string>(mortgageTermState);
+  const [interest, setInterest] = useRecoilState<string>(mortgateInterestState);
+  const [monthlyRepayments, setMonthyRepayments] = useRecoilState<number>(
+    monthlyRepaymentsState
+  );
+  const [totalAmountToBePaid, setTotalAmountToBePaid] =
+    useRecoilState(totalAmountState);
+  const [type, setType] = useRecoilState<"" | "repay" | "interest">(
+    mortgageTypeState
+  );
 
   const handleMortgageAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-
     setMortgageAmount(event.target.value);
   };
 
   const handleMortgageTermAmount = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
+    event.preventDefault();
     setTerm(event.target.value);
   };
 
   const handleInterest = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
     setInterest(event.target.value);
   };
 
   const handleType = (event: React.ChangeEvent<HTMLElement>) => {
-    setType((event.target as HTMLInputElement).value);
+    setType(
+      (event.target as HTMLInputElement).value as "" | "repay" | "interest"
+    );
   };
+
   const handleCalculatePaymentsBtn = () => {
-    console.log(Number(monthlyRepayments));
+    const currentTerm = Number(term);
+
+    const principalAmount = parseFloat(mortgageAmount.replace(",", ""));
+    const rate = Number(interest) / 100;
+    const mortgateType = type;
+
+    const annualRate = rate / 12;
+
+    const totalNumberOfPayments = currentTerm * 12;
+
+    const monthlyAmount =
+      type === "repay"
+        ? (principalAmount *
+            annualRate *
+            Math.pow(1 + annualRate, totalNumberOfPayments)) /
+          (Math.pow(1 + annualRate, totalNumberOfPayments) - 1)
+        : principalAmount * annualRate;
+
+    console.log("monthly amount", monthlyAmount);
+    setMonthyRepayments(monthlyAmount);
+
+    const totalPayments = monthlyAmount * totalNumberOfPayments;
+    setTotalAmountToBePaid(totalPayments);
   };
 
   return (
@@ -102,7 +147,7 @@ export const Form: React.FC = () => {
           className={classes.formField}
         />
       </Grid>
-      <Grid item className={cx(classes.formField, classes.formFieldRight)}>
+      <Grid item className={classes.formField}>
         <FormLabel id="mortgage-type">
           <Typography
             component={"span"}
@@ -142,6 +187,18 @@ export const Form: React.FC = () => {
             }
           />
         </RadioGroup>
+      </Grid>
+      <Grid item className={classes.calculateBtnContainer}>
+        <Button
+          className={classes.calculateBtn}
+          fullWidth
+          onClick={handleCalculatePaymentsBtn}
+        >
+          <CalculatorIcon className={classes.calculatorIcon} />
+          <Typography component={"span"} className={classes.calculateBtnText}>
+            Calculate Repayments
+          </Typography>
+        </Button>
       </Grid>
     </Grid>
   );
