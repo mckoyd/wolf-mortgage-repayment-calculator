@@ -32,7 +32,7 @@ export const useFormStyles = tss.create(({ theme }) => ({
     "& .MuiFormControlLabel-label": {
       ...(theme.typography.preset3 as CSSProperties),
       letterSpacing: 0,
-      fontSize: "1rem",
+      fontSize: "0.875rem",
     },
   },
 
@@ -62,6 +62,14 @@ export const useFormStyles = tss.create(({ theme }) => ({
     padding: "0.75em 1em",
     background: theme.palette.common.slate1,
   },
+
+  focusedInputAdornment: {
+    background: `${theme.palette.common.lime} !important`,
+    color: theme.palette.common.slate9,
+    height: "2.875em",
+    maxHeight: "none",
+    padding: "0.75em 1em",
+  },
   calculateBtnContainer: {
     width: "100%",
   },
@@ -74,6 +82,10 @@ export const useFormStyles = tss.create(({ theme }) => ({
     borderRadius: "62.4375em",
     gap: "0.75em",
     padding: "1em 2.5em",
+    "&:hover": {
+      background:
+        "linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), #D8DB2F",
+    },
   },
   calculatorIcon: {
     width: "1.5em",

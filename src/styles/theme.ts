@@ -127,6 +127,16 @@ const theme: Theme = createTheme({
           "& input": {
             padding: "0 1em !important",
           },
+          "&.Mui-focused": {
+            border: `0.0625em solid ${lime}`,
+            "& .MuiInputAdornment-root": {
+              background: lime,
+              color: slate9,
+              "& p": {
+                fontWeight: 700,
+              },
+            },
+          },
         },
         underline: {
           "&:before": {

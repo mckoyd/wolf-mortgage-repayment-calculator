@@ -37,9 +37,11 @@ export const Form: React.FC = () => {
   const [type, setType] = useRecoilState<"" | "repay" | "interest">(
     mortgageTypeState
   );
+  const [changeToFocusBg, setChangeToFocusBg] = useState(false);
 
   const handleMortgageAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
+    setChangeToFocusBg(true);
     setMortgageAmount(event.target.value);
   };
 
@@ -66,21 +68,19 @@ export const Form: React.FC = () => {
 
     const principalAmount = parseFloat(mortgageAmount.replace(",", ""));
     const rate = Number(interest) / 100;
-    const mortgateType = type;
+    const mortgageType = type;
 
     const annualRate = rate / 12;
 
     const totalNumberOfPayments = currentTerm * 12;
 
     const monthlyAmount =
-      type === "repay"
+      mortgageType === "repay"
         ? (principalAmount *
             annualRate *
             Math.pow(1 + annualRate, totalNumberOfPayments)) /
           (Math.pow(1 + annualRate, totalNumberOfPayments) - 1)
         : principalAmount * annualRate;
-
-    console.log("monthly amount", monthlyAmount);
     setMonthyRepayments(monthlyAmount);
 
     const totalPayments = monthlyAmount * totalNumberOfPayments;
@@ -93,11 +93,16 @@ export const Form: React.FC = () => {
         <TextField
           label="Mortgage Amount"
           id="mortgage-amount"
+          onBlur={() => setChangeToFocusBg(false)}
           InputProps={{
             startAdornment: (
               <InputAdornment
                 position="start"
-                className={classes.inputAdornment}
+                className={
+                  changeToFocusBg
+                    ? classes.focusedInputAdornment
+                    : classes.inputAdornment
+                }
               >
                 £
               </InputAdornment>
