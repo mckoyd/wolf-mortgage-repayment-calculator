@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   FormControlLabel,
@@ -22,11 +22,15 @@ import {
   mortgateInterestState,
   totalAmountState,
 } from "../state";
+import { formErrorText } from "../config/form.config";
 
 export const Form: React.FC = () => {
   const { classes, cx } = useFormStyles();
   const [mortgageAmount, setMortgageAmount] =
     useRecoilState<string>(mortgageAmountState);
+  const [mortgageAmountError, setMortgageAmountError] = useState<
+    string | undefined
+  >();
   const [term, setTerm] = useRecoilState<string>(mortgageTermState);
   const [interest, setInterest] = useRecoilState<string>(mortgateInterestState);
   const [monthlyRepayments, setMonthyRepayments] = useRecoilState<number>(
@@ -42,6 +46,7 @@ export const Form: React.FC = () => {
   const handleMortgageAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     setChangeToFocusBg(true);
+
     setMortgageAmount(event.target.value);
   };
 
@@ -93,7 +98,18 @@ export const Form: React.FC = () => {
         <TextField
           label="Mortgage Amount"
           id="mortgage-amount"
-          onBlur={() => setChangeToFocusBg(false)}
+          error={mortgageAmountError !== undefined}
+          helperText={mortgageAmountError}
+          onFocus={() => {
+            setMortgageAmountError(undefined);
+          }}
+          onBlur={() => {
+            setChangeToFocusBg(false);
+
+            if (mortgageAmount === "") {
+              setMortgageAmountError(formErrorText);
+            }
+          }}
           InputProps={{
             startAdornment: (
               <InputAdornment

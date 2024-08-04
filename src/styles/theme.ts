@@ -105,6 +105,9 @@ const theme: Theme = createTheme({
           "&.Mui-focused": {
             color: slate7,
           },
+          "&.Mui-error": {
+            color: "inherit",
+          },
         },
       },
     },
@@ -127,13 +130,25 @@ const theme: Theme = createTheme({
           "& input": {
             padding: "0 1em !important",
           },
-          "&.Mui-focused": {
+          "&.Mui-focused:not(& .Mui-error)": {
             border: `0.0625em solid ${lime}`,
             "& .MuiInputAdornment-root": {
               background: lime,
-              color: slate9,
               "& p": {
                 fontWeight: 700,
+                color: slate9,
+              },
+            },
+          },
+          "&.Mui-error": {
+            color: "inherit",
+
+            border: `0.0625em solid ${red}`,
+            "& .MuiInputAdornment-root": {
+              background: red,
+              "& p": {
+                fontWeight: 700,
+                color: "#FFF",
               },
             },
           },

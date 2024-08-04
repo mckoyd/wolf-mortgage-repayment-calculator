@@ -12,6 +12,9 @@ export const useFormStyles = tss.create(({ theme }) => ({
     gap: "0.75em",
     width: "100%",
     fontSize: "1rem",
+    "& .MuiInput-root:hover:not(.Mui-focused)": {
+      border: "1px solid #133041",
+    },
   },
 
   formFieldRight: {
