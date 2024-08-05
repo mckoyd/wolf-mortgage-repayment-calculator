@@ -5,6 +5,7 @@ import { useLandingStyles } from "../styles/landing.styles";
 
 import Header from "../components/Header";
 import Form from "../components/Form";
+import ResultsContainer from "../components/ResultsContainer";
 
 const Landing: React.FC = () => {
   const { classes } = useLandingStyles();
@@ -20,7 +21,7 @@ const Landing: React.FC = () => {
         <Header />
         <Form />
       </Grid>
-      <Grid item className={classes.resultsItemContainer}></Grid>
+      <ResultsContainer />
     </Grid>
   );
 };

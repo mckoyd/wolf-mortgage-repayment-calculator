@@ -17,7 +17,7 @@ export const mortgateInterestState = atom({
 
 export const mortgageTypeState = atom({
   key: "mortgageTypeState",
-  default: "" as "" | "repay" | "interest",
+  default: "",
 });
 
 export const monthlyRepaymentsState = atom({
