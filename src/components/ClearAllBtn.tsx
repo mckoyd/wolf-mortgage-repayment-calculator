@@ -4,10 +4,13 @@ import { clearAllBtnText } from "../config/header.config";
 import { useClearAllBtnStyles } from "../styles/clearAllBtn.styles";
 import { useSetRecoilState } from "recoil";
 import {
+  interestPaymentsState,
+  monthlyRepaymentsState,
   mortgageAmountState,
   mortgageTermState,
   mortgageTypeState,
   mortgateInterestState,
+  totalAmountState,
 } from "../state";
 
 const ClearAllBtn: React.FC = () => {
@@ -17,6 +20,9 @@ const ClearAllBtn: React.FC = () => {
   const setMortgageInterest = useSetRecoilState(mortgateInterestState);
   const setMortgageType = useSetRecoilState(mortgageTypeState);
   const setMortgageTerm = useSetRecoilState(mortgageTermState);
+  const setMonthlyPayments = useSetRecoilState(monthlyRepaymentsState);
+  const setInterestPayments = useSetRecoilState(interestPaymentsState);
+  const setTotalPayments = useSetRecoilState(totalAmountState);
 
   const handleClearAllBtn = () => {
     console.log("clearAllBtn clicked");
@@ -24,6 +30,9 @@ const ClearAllBtn: React.FC = () => {
     setMortgageInterest("");
     setMortgageType("");
     setMortgageTerm("");
+    setMonthlyPayments(0);
+    setInterestPayments(0);
+    setTotalPayments(0);
   };
 
   return (

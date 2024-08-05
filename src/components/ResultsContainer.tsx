@@ -1,22 +1,25 @@
-import { Grid, Typography } from "@mui/material";
 import React from "react";
+import { Grid } from "@mui/material";
+import { useRecoilValue } from "recoil";
+
 import { useResultsContainerStyles } from "../styles/resultsContainer.styles";
-import { ReactComponent as EmptyCalculator } from "../assets/images/illustration-empty.svg";
+import { totalAmountState } from "../state";
+
+import EmptyResultsContainer from "./EmptyResultsContainer";
+import CalculatedResultsContainer from "./CalculatedResultsContainer";
 
 const ResultsContainer: React.FC = () => {
   const { classes } = useResultsContainerStyles();
+
+  const totalPayments = useRecoilValue(totalAmountState);
+
   return (
     <Grid container className={classes.results}>
-      <Grid item>
-        <EmptyCalculator />
-      </Grid>
-      <Typography className={classes.emptyResultsTitle}>
-        Results shown here
-      </Typography>
-      <Typography className={classes.emptyResultsSubtitle}>
-        Complete the form and click “calculate repayments” to see what your
-        monthly repayments would be.
-      </Typography>
+      {totalPayments === 0 ? (
+        <EmptyResultsContainer />
+      ) : (
+        <CalculatedResultsContainer />
+      )}
     </Grid>
   );
 };

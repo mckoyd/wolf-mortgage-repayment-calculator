@@ -4,6 +4,7 @@ import React from "react";
 import { ReactComponent as CalculatorIcon } from "../assets/images/icon-calculator.svg";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
+  interestPaymentsState,
   monthlyRepaymentsState,
   mortgageAmountState,
   mortgageTermState,
@@ -22,7 +23,11 @@ const CalculateBtn: React.FC = () => {
   const mortgageAmount = useRecoilValue(mortgageAmountState);
 
   const setMonthlyRepayments = useSetRecoilState(monthlyRepaymentsState);
+  const setInterestRepayments = useSetRecoilState(interestPaymentsState);
   const setTotalAmountToBePaid = useSetRecoilState(totalAmountState);
+
+  const isCalculatedBtnDisabled = () =>
+    term === "" || interest === "" || type === "" || mortgageAmount === "";
 
   const handleCalculatePaymentsBtn = () => {
     const currentTerm = Number(term);
@@ -42,7 +47,9 @@ const CalculateBtn: React.FC = () => {
             Math.pow(1 + annualRate, totalNumberOfPayments)) /
           (Math.pow(1 + annualRate, totalNumberOfPayments) - 1)
         : principalAmount * annualRate;
-    setMonthlyRepayments(monthlyAmount);
+
+    if (mortgageType === "repay") setMonthlyRepayments(monthlyAmount);
+    if (mortgageType === "interest") setInterestRepayments(monthlyAmount);
 
     const totalPayments = monthlyAmount * totalNumberOfPayments;
     setTotalAmountToBePaid(totalPayments);
@@ -54,6 +61,7 @@ const CalculateBtn: React.FC = () => {
         className={classes.calculateBtn}
         fullWidth
         onClick={handleCalculatePaymentsBtn}
+        disabled={isCalculatedBtnDisabled()}
       >
         <CalculatorIcon className={classes.calculatorIcon} />
         <Typography component={"span"} className={classes.calculateBtnText}>
