@@ -21,7 +21,9 @@ const Landing: React.FC = () => {
         <Header />
         <Form />
       </Grid>
-      <ResultsContainer />
+      <Grid item className={classes.resultsItemContainer}>
+        <ResultsContainer />
+      </Grid>
     </Grid>
   );
 };
